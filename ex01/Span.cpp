@@ -70,26 +70,10 @@ int	Span::longestSpan( void ) const{
 	try
 	{
 		sort(temp.begin(), temp.end());
-		//std::cout << "After sorting..." << std::endl;
-		//listVector(temp);
+		// std::cout << "After sorting..." << std::endl;
+		// listVector(temp);
 		std::cout << temp.at(temp.size() - 1) << " - " << *temp.begin() << std::endl;
 	}
 	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
 	return (temp.at(temp.size() - 1) - *temp.begin());
-}
-
-void	Span::listSpan( void ) const{
-	std::vector<int>::const_iterator it = this->lst.begin();
-	std::vector<int>::const_iterator ite = this->lst.end();
-
-	for (int i = 0; it != ite ; it++)
-		std::cout << i++ << ": " << *it << std::endl;
-}
-
-void	Span::listVector( std::vector<int> vec ) const{
-	std::vector<int>::const_iterator it = vec.begin();
-	std::vector<int>::const_iterator ite = vec.end();
-
-	for (int i = 0; it != ite ; it++)
-		std::cout << i++ << ": " << *it << std::endl;
 }

@@ -7,10 +7,9 @@
 #include <cmath>
 
 class Span{
-	private:
+	public:
 		std::vector<int>	lst;
 		unsigned int		nMax;
-	public:
 		Span( void );
 		Span( unsigned int n );
 		Span( const Span &b );
@@ -31,6 +30,6 @@ class Span{
 	void	addNumber( int n );
 	int		shortestSpan( void ) const;
 	int		longestSpan( void ) const;
-	void	listSpan( void ) const;
-	void	listVector( std::vector<int> vec ) const;
 };
+
+void	listVector( std::vector<int> const vec );
