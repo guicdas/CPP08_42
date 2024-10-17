@@ -1,10 +1,10 @@
 CXX				= c++
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM				= rm -fr
-INC				= Span.hpp
-NAME			= Span
+INC				= Easyfind.hpp
+NAME			= easyfind
 
-SOURCES			= main.cpp Span.cpp
+SOURCES			= main.cpp
 
 SOURCES_O		= $(SOURCES:.cpp=.o)
 
