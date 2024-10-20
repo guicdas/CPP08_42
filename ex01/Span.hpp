@@ -19,17 +19,28 @@ class Span{
 	class NoSpanToBeFoundException : public std::exception
 	{
 		public:
-				virtual const char *what() const throw(){return ("Error: No span can be found in this list!");};
+				virtual const char *what() const throw();
 	};
 	class FullListException : public std::exception
 	{
 		public:
-				virtual const char *what() const throw(){return ("Error: The list is full and cannot take anymore arguments!");};
+				virtual const char *what() const throw();
+	};
+	class NotAnIntException : public std::exception
+	{
+		public:
+				virtual const char *what() const throw();
+	};
+	class NotEnoughSpaceException : public std::exception
+	{
+		public:
+				virtual const char *what() const throw();
 	};
 
-	void	addNumber( int n );
-	int		shortestSpan( void ) const;
-	int		longestSpan( void ) const;
+	void		addNumber( long long n );
+	long long	shortestSpan( void ) const;
+	long long	longestSpan( void ) const;
+	void		addNumbers( std::vector<int> const &n );
 };
 
-void	listVector( std::vector<int> const vec );
+std::ostream &operator<<(std::ostream & os, Span const &b);

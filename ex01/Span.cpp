@@ -29,32 +29,42 @@ Span::~Span( void ) {
 }
 
 
-void	Span::addNumber( int n ){
+void	Span::addNumber( long long n ){
 	if (this->lst.size() >= nMax)
 		throw (FullListException());
+	if (n > 2147483647 || n < -2147483648)
+		throw (NotAnIntException());
 	this->lst.push_back(n);
 }
 
-int	Span::shortestSpan( void ) const{
-	std::vector<int> temp = this->lst;
-	std::vector<int>::const_iterator it;
-	std::vector<int>::const_iterator itbefore;
-	int	ret;
+void	Span::addNumbers( std::vector<int> const &n ){
+	if (n.size() > this->nMax)
+		throw (NotEnoughSpaceException());
+	this->lst.insert(this->lst.end(), n.begin(), n.end());
+	this->nMax = this->lst.size();
+}
+
+long long	Span::shortestSpan( void ) const{
+	std::vector<int>					temp = this->lst;
+	std::vector<int>::const_iterator	it;
+	std::vector<int>::const_iterator	itbefore;
+	long long							ret;
 
 	if (this->lst.size() < 2)
 		throw (NoSpanToBeFoundException());
 	try
 	{
-		sort(temp.begin(), temp.end());
+		std::sort(temp.begin(), temp.end());
 		it = temp.begin();
 		itbefore = it++;
-		ret = abs(*itbefore - *it);
+
+			ret = std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it));
 		for (; it != temp.end(); it++)
 		{
-			if (ret > abs(*itbefore - *it))
+			if (ret > static_cast<long long> (*itbefore) - static_cast<long long>(*it))
 			{
-				std::cout << abs(*itbefore - *it)  << ": " << *itbefore << " - " << *it <<std::endl;
-				ret = abs(*itbefore - *it);
+				ret = std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it));
+				std::cout << ret  << ": " << *itbefore << " - " << *it <<std::endl;
 			}
 			itbefore = it;
 		}
@@ -64,16 +74,42 @@ int	Span::shortestSpan( void ) const{
 	return (ret);
 }
 
-int	Span::longestSpan( void ) const{
-	std::vector<int> temp = this->lst;
+long long	Span::longestSpan( void ) const{
+	std::vector<int>	temp = this->lst;
+	long long			ret;
 
 	try
 	{
-		sort(temp.begin(), temp.end());
-		// std::cout << "After sorting..." << std::endl;
-		// listVector(temp);
-		std::cout << temp.at(temp.size() - 1) << " - " << *temp.begin() << std::endl;
+		std::sort(temp.begin(), temp.end());
+		std::cout << temp.at(temp.size() - 1) << " - " << std::llabs(*temp.begin()) << std::endl;
 	}
 	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
-	return (temp.at(temp.size() - 1) - *temp.begin());
+	ret = std::llabs(static_cast<long long>(temp.at(temp.size() - 1)) - static_cast<long long>(*temp.begin()));
+	return (ret);
+}
+
+const char *Span::NoSpanToBeFoundException::what(void) const throw(){
+	return ("Error: No span can be found in this list!");
+}
+
+const char *Span::FullListException::what(void) const throw(){
+	return ("Error: The list is full and cannot take anymore arguments!");
+}
+
+const char *Span::NotAnIntException::what(void) const throw(){
+	return ("Error: Argument is not an integer!");
+}
+
+const char *Span::NotEnoughSpaceException::what(void) const throw(){
+	return ("Error: Span does not have suficient storage!");
+}
+
+std::ostream &operator<<(std::ostream & os, Span const &s){
+	std::vector<int>::const_iterator it = s.lst.begin();
+	std::vector<int>::const_iterator ite = s.lst.end();
+
+	for (int i = 0; it != ite ; it++)
+		os << i++ << ": " << *it << std::endl;
+		
+	return (os);
 }
