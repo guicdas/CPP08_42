@@ -7,28 +7,24 @@ template <typename S>
 class MutantStack : public std::stack<S>
 {
 	public:
-		MutantStack( void ) : std::stack<S>() {};
-		MutantStack( const MutantStack &s ) : std::stack<S>(s) {};
-		MutantStack& operator=( const MutantStack &s ){
-			if (this != &s)
-				std::stack<S>::operator=(s);
-			return (*this);
-		};
-		~MutantStack( void ) {std::cout << "Destroyed MutantStack with " << this->size() << " elements!" << std::endl;};
+		MutantStack( void );
+		MutantStack( const MutantStack<S> &s );
+		MutantStack<S>& operator=( const MutantStack<S> &s );
+		~MutantStack( void );
 
 		typedef typename std::stack<S>::container_type::iterator MutantIterator;
 		typedef typename std::stack<S>::container_type::const_iterator cMutantIterator;
 		typedef typename std::stack<S>::container_type::reverse_iterator MutantReverseIterator;
 		typedef typename std::stack<S>::container_type::const_reverse_iterator cMutantReverseIterator;
 
-		MutantIterator			begin( void )		{return (this->c.begin());};
-		MutantIterator			end( void )			{return (this->c.end());};
-		cMutantIterator			begin( void ) const	{return (this->c.begin());};
-		cMutantIterator			end( void )	const	{return (this->c.end());};
-		MutantReverseIterator	rbegin( void )		{return (this->c.rbegin());};
-		MutantReverseIterator	rend( void )		{return (this->c.rend());};
-		cMutantReverseIterator	rbegin( void ) const{return (this->c.rbegin());};
-		cMutantReverseIterator	rend( void ) const	{return (this->c.rend());};
+	MutantIterator			begin( void );
+	MutantIterator			end( void );
+	cMutantIterator			cbegin( void )	const;
+	cMutantIterator			cend( void )	const;
+	MutantReverseIterator	rbegin( void );
+	MutantReverseIterator	rend( void );
+	cMutantReverseIterator	crbegin( void ) const;
+	cMutantReverseIterator	crend( void )	const;
 
 };
 
@@ -54,3 +50,5 @@ std::ostream &operator<<(std::ostream &os, MutantStack<S> &s) {
 
 	return (os);
 }
+
+#include "MutantStack.tpp"

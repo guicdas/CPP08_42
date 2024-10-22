@@ -2,9 +2,9 @@ CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM				= rm -fr
 INC				= Easyfind.hpp
-NAME			= easyfind
+NAME			= Easyfind
 
-SOURCES			= main.cpp
+SOURCES			= main.cpp Easyfind.cpp
 
 SOURCES_O		= $(SOURCES:.cpp=.o)
 

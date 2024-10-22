@@ -3,16 +3,16 @@
 int main( void ) {
 	std::list<int> intList;
 
+	try
+	{
+		easyfind(intList, 5);
+	}
+	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
+
 	for (int i = 0; i < 9; i++)
 		intList.push_back(i);
 
-	std::list<int>::const_iterator it = intList.begin();
-	std::list<int>::const_iterator ite = intList.end();
-
-	for (int i = 0; it != ite; it++)
-		std::cout << i++ << ": " << *it << std::endl;
-	std::cout << std::endl;
-	//e se tiver vazia
+	std::cout << intList << std::endl;
 	try
 	{
 		easyfind(intList, 5);

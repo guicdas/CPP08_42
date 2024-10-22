@@ -8,20 +8,18 @@
 class NoOccurrenceInContainerException : public std::exception
 {
 	public:
-			virtual const char *what() const throw(){return ("Error: No occurence found in container!");};
+		virtual const char *what() const throw();
 };
 
 template <typename T>
 void	easyfind(T const & lst, int const n){
-	std::list<int>::const_iterator it = lst.begin();
-	std::list<int>::const_iterator ite = lst.end();
-	std::list<int>::const_iterator itFound;
+	std::list<int>::const_iterator itFound = find(lst.begin(), lst.end(), n);
 
-	itFound = find(it, ite, n);
-	if (*itFound == *ite)
+	if (*itFound == *lst.end())
 		throw (NoOccurrenceInContainerException());
-	else	
-		std::cout << "Found an occurrence inside container at place " << *itFound << std::endl;
+	else
+		std::cout << "Found an occurrence inside list at place " << *itFound << std::endl;
 
 }
 
+std::ostream &operator<<(std::ostream &os, std::list<int> const &l);

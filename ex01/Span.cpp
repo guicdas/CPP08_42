@@ -52,24 +52,19 @@ long long	Span::shortestSpan( void ) const{
 
 	if (this->lst.size() < 2)
 		throw (NoSpanToBeFoundException());
-	try
+	std::sort(temp.begin(), temp.end());
+	it = temp.begin();
+	itbefore = it++;
+	ret = std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it));
+	for (; it != temp.end(); it++)
 	{
-		std::sort(temp.begin(), temp.end());
-		it = temp.begin();
-		itbefore = it++;
-
-			ret = std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it));
-		for (; it != temp.end(); it++)
+		if (ret > std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it)))
 		{
-			if (ret > static_cast<long long> (*itbefore) - static_cast<long long>(*it))
-			{
-				ret = std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it));
-				std::cout << ret  << ": " << *itbefore << " - " << *it <<std::endl;
-			}
-			itbefore = it;
+			ret = std::llabs(static_cast<long long> (*itbefore) - static_cast<long long>(*it));
+			std::cout << ret  << ": " << *itbefore << " - " << *it <<std::endl;
 		}
+		itbefore = it;
 	}
-	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
 
 	return (ret);
 }
@@ -78,13 +73,12 @@ long long	Span::longestSpan( void ) const{
 	std::vector<int>	temp = this->lst;
 	long long			ret;
 
-	try
-	{
-		std::sort(temp.begin(), temp.end());
-		std::cout << temp.at(temp.size() - 1) << " - " << std::llabs(*temp.begin()) << std::endl;
-	}
-	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
+	if (this->lst.size() < 2)
+		throw (NoSpanToBeFoundException());
+	std::sort(temp.begin(), temp.end());
+	std::cout << temp.at(temp.size() - 1) << " + " << std::llabs(*temp.begin()) << std::endl;
 	ret = std::llabs(static_cast<long long>(temp.at(temp.size() - 1)) - static_cast<long long>(*temp.begin()));
+
 	return (ret);
 }
 
@@ -106,9 +100,8 @@ const char *Span::NotEnoughSpaceException::what(void) const throw(){
 
 std::ostream &operator<<(std::ostream & os, Span const &s){
 	std::vector<int>::const_iterator it = s.lst.begin();
-	std::vector<int>::const_iterator ite = s.lst.end();
 
-	for (int i = 0; it != ite ; it++)
+	for (int i = 0; it != s.lst.end() ; it++)
 		os << i++ << ": " << *it << std::endl;
 		
 	return (os);
