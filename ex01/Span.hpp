@@ -14,7 +14,7 @@ class Span{
 		unsigned int		nMax;
 		Span( void );
 		Span( unsigned int n );
-		Span( const Span &b );
+		Span( const Span &s );
 		Span& operator=( const Span &s );
 		~Span( void );
 

@@ -13,12 +13,12 @@ Span::Span( const Span &s ){
 	*this = s;
 }
 
-Span& Span::operator=( const Span &b ){
+Span& Span::operator=( const Span &s ){
 	std::cout << "Span Copy assigment called!\n";
-	if (this != &b)
+	if (this != &s)
 	{
-		this->lst = b.lst;
-		this->nMax = b.nMax;
+		this->lst = s.lst;
+		this->nMax = s.nMax;
 	}
 
 	return (*this);
