@@ -8,8 +8,8 @@ class MutantStack : public std::stack<S>
 {
 	public:
 		MutantStack( void );
-		MutantStack( const MutantStack<S> &s );
-		MutantStack<S>& operator=( const MutantStack<S> &s );
+		MutantStack( const MutantStack &s );
+		MutantStack& operator=( const MutantStack &s );
 		~MutantStack( void );
 
 		typedef typename std::stack<S>::container_type::iterator MutantIterator;

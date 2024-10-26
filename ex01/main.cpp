@@ -7,6 +7,7 @@ int main( void ) {
 	try
 	{
 		sp.addNumber(2147483647);
+		// insert tests
 	}
 	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
 	std::cout << sp;
@@ -37,21 +38,21 @@ int main( void ) {
 	std::deque<int> deque;
 	try
 	{
-		clock_t start = clock();
+		clock_t start = std::clock();
 		spa.addNumbers(Vector);
-		start = clock() - start;
+		start = std::clock() - start;
 		// std::cout << spa;
 		std::cout << "Span size: "<< spa.nMax << " elements in " <<  static_cast<float>(start) / CLOCKS_PER_SEC<< " seconds." << std::endl;
 		//spa.addNumber(2);
-		start = clock();
+		start = std::clock();
 		for(int i = 0; i < vecSize ;i++)
 			deque.push_back(std::rand() % 100 + 1);
 		//deque.insert(deque.begin(), Vector.begin(), Vector.end());
-		start = clock() - start;
+		start = std::clock() - start;
 		// std::cout << spa;
 		std::cout << "deque size: "<< deque.size() << " elements in " <<  static_cast<float>(start) / CLOCKS_PER_SEC<< " seconds." << std::endl;
 	}
-	catch(const std::exception& e){std::cerr << e.what() << '\n';}
+	catch(const std::exception& e){std::cerr << e.what() << std::endl;}
 	std::cout << std::endl;
 
 }

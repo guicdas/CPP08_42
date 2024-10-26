@@ -13,8 +13,8 @@ int main( void ) {
 	mstack.push(5);
 	mstack.push(737);
 	mstack.push(0);
-	MutantStack<int>::MutantIterator it = mstack.begin();
-	MutantStack<int>::MutantIterator ite = mstack.end();
+	std::stack<int>::container_type::iterator it = mstack.begin();
+	std::stack<int>::container_type::iterator ite = mstack.end();
 	++it;
 	--it;
 	while (it != ite)

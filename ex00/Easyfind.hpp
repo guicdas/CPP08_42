@@ -13,7 +13,7 @@ class NoOccurrenceInContainerException : public std::exception
 
 template <typename T>
 void	easyfind(T const & lst, int const n){
-	std::list<int>::const_iterator itFound = find(lst.begin(), lst.end(), n);
+	std::list<int>::const_iterator itFound = std::find(lst.begin(), lst.end(), n);
 
 	if (*itFound == *lst.end())
 		throw (NoOccurrenceInContainerException());
