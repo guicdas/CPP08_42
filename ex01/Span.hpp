@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <ctime>		//clock
+#include <deque>
 
 class Span{
 	public:

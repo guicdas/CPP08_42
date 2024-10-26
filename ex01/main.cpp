@@ -34,12 +34,22 @@ int main( void ) {
 	std::cout << std::endl;
 
 	Span spa(vecSize);
+	std::deque<int> deque;
 	try
 	{
+		clock_t start = clock();
 		spa.addNumbers(Vector);
+		start = clock() - start;
 		// std::cout << spa;
-		std::cout << "Span size: "<< spa.nMax << std::endl;
-		spa.addNumber(2);
+		std::cout << "Span size: "<< spa.nMax << " elements in " <<  static_cast<float>(start) / CLOCKS_PER_SEC<< " seconds." << std::endl;
+		//spa.addNumber(2);
+		start = clock();
+		for(int i = 0; i < vecSize ;i++)
+			deque.push_back(std::rand() % 100 + 1);
+		//deque.insert(deque.begin(), Vector.begin(), Vector.end());
+		start = clock() - start;
+		// std::cout << spa;
+		std::cout << "deque size: "<< deque.size() << " elements in " <<  static_cast<float>(start) / CLOCKS_PER_SEC<< " seconds." << std::endl;
 	}
 	catch(const std::exception& e){std::cerr << e.what() << '\n';}
 	std::cout << std::endl;
